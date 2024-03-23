@@ -8,7 +8,6 @@
 import SwiftUI
 
 enum Screens : Hashable{
-    
     case add
 }
 
@@ -22,17 +21,24 @@ struct HomeView: View {
         
         NavigationStack{
             
-            List{
-                ForEach(viewModel.items) { item  in
-                    ListRowItemView(item: item)
-                        .onTapGesture {
-                            withAnimation(.easeIn(duration: 0.2)) {
-                                viewModel.update(item: item)
-                            }
+            ZStack{
+                if viewModel.items.isEmpty {
+                    EmptyScreenView()
+                        .transition(AnyTransition.opacity.animation(.easeIn(duration: 6)))
+                }else{
+                    List{
+                        ForEach(viewModel.items) { item  in
+                            ListRowItemView(item: item)
+                                .onTapGesture {
+                                    withAnimation(.easeIn(duration: 0.2)) {
+                                        viewModel.update(item: item)
+                                    }
+                                }
                         }
+                        .onDelete(perform: viewModel.delete)
+                        .onMove(perform: viewModel.move)
+                    }
                 }
-                .onDelete(perform: viewModel.delete)
-                .onMove(perform: viewModel.move)
             }
             .navigationTitle("Todo List🧾")
             .navigationDestination(for: Screens.self, destination: { value in

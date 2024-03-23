@@ -20,11 +20,10 @@ struct AddView: View {
         
         ScrollView(.vertical) {
             VStack{
-                
                 TextField("Type something in here", text: $textField)
                     .padding(.horizontal)
                     .frame(height: 55)
-                    .background(Color.gray.opacity(0.2))
+                    .background(Color(uiColor: UIColor.secondarySystemBackground))
                     .clipShape(RoundedRectangle(cornerRadius: 15))
 
                 
@@ -37,7 +36,7 @@ struct AddView: View {
                         .frame(height: 55)
                         .frame(maxWidth: .infinity)
                         .foregroundStyle(Color.white)
-                        .background(Color.blue)
+                        .background(Color.accent)
                         .clipShape(RoundedRectangle(cornerRadius: 15))
                 })
                 

@@ -17,9 +17,12 @@ struct ListRowItemView: View {
             Image(systemName: item.isCompleted ?  "checkmark.square" : "square")
                 .renderingMode(.template)
                 .foregroundStyle(item.isCompleted ? Color.green : Color.red)
+            
             Text("\(item.title)")
+            
             Spacer()
         }
+        .fontWeight(.semibold)
         .font(.system(.title2 , design: .rounded))
     }
 }
